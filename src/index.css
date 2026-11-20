@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;450;600;800;900&family=JetBrains+Mono:wght@300;500;850&family=Space+Grotesk:wght@355;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-lb-bg: var(--theme-lb-bg);
+  --color-lb-panel: var(--theme-lb-panel);
+  --color-lb-panel-hover: var(--theme-lb-panel-hover);
+  --color-lb-border: var(--theme-lb-border);
+  --color-lb-accent: var(--theme-lb-accent);
+  --color-lb-text: var(--theme-lb-text);
+  --color-lb-text-muted: var(--theme-lb-text-muted);
+  --color-lb-up: var(--theme-lb-up);
+  --color-lb-down: var(--theme-lb-down);
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--color-lb-bg);
+  color: var(--color-lb-text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* Custom scrollbars for trading panels */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-lb-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-lb-text-muted);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes flashGreen {
+  0% { background-color: color-mix(in srgb, var(--theme-lb-up) 25%, transparent); }
+  100% { background-color: transparent; }
+}
+@keyframes flashRed {
+  0% { background-color: color-mix(in srgb, var(--theme-lb-down) 25%, transparent); }
+  100% { background-color: transparent; }
+}
+.flash-up { animation: flashGreen 0.5s ease-out; }
+.flash-down { animation: flashRed 0.5s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.backdrop-blur-xs {
+  backdrop-filter: blur(2px);
+}
+
+/* Responsive Simulator Shell Layout */
+@media (min-width: 640px) and (min-height: 640px) {
+  .app-container {
+    background-color: #070708 !important;
+    padding: 1rem !important;
+  }
+  .phone-shell {
+    width: 375px !important;
+    height: 780px !important;
+    border: 12px solid #27272a !important;
+    border-radius: 50px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55) !important;
+  }
+  .desktop-only-notch {
+    display: flex !important;
+  }
+  .desktop-only-control-panel {
+    display: flex !important;
+  }
+  .notch-padding {
+    padding-top: 2rem !important;
+  }
+}
+
+.notch-padding {
+  padding-top: 0;
+}
+
+/* Simulated Landscape Rotation */
+.rotated-landscape {
+  transform: rotate(90deg) !important;
+  transform-origin: center !important;
+  width: 100vh !important;
+  height: 100vw !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-top: -50vw !important;
+  margin-left: -50vh !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: var(--color-lb-bg) !important;
+}
+
+input, textarea, select {
+  background-color: var(--color-lb-panel);
+  color: var(--color-lb-text);
+  border-color: var(--color-lb-border);
+}
+
+/* Custom Checkbox for LittleBee Theme */
+input[type="checkbox"] {
+  accent-color: var(--color-lb-accent);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
